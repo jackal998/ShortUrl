@@ -4,12 +4,18 @@ class AcSusController < ApplicationController
 	end
 	def new
 		if params[:id]
-			@acsu =AcSu.find(params[:id])
+			@acsu = AcSu.find(params[:id])
 		else
 			@acsu = AcSu.last
 		end
 	end
-
+	def show
+		if targeturl = AcSu.find_by(:shorturl=>params[:id]).target
+			redirect_to targeturl
+		else
+			redirect_to ac_sus_path
+		end
+	end
 	def create
 		if @acsu = AcSu.find_by(:target=>su_params[:target])
 			redirect_to new_ac_su_path(:id => @acsu)
@@ -22,7 +28,6 @@ class AcSusController < ApplicationController
 				render :index
 			end
 		end
-		
 	end
 
 	private
