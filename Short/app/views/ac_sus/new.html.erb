@@ -1,10 +1,7 @@
-<ul>
-<div class="form-group">
-	<li><h3>Here You Are</h3></li>
-	<li><a href=<%= @acsu.target %>><%= "http://localhost:3000/ac_sus/"+"#{@acsu.shorturl}" %></a></li>
-</div>
-	<li><%= link_to "generate another", ac_sus_path ,:class=>"btn btn-default"%></li>
-</ul>
-
-
-
+<form>
+	<div class="form-group">
+		<h3>Here You Are :</h3>
+		<a href=<%= @acsu.target %>><%= "http://localhost:3000/ac_sus/"+"#{@acsu.shorturl}" %></a>
+	</div>
+	<%= link_to "generate another", ac_sus_path ,:class=>"btn btn-default"%>
+</form>

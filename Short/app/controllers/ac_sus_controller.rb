@@ -10,8 +10,13 @@ class AcSusController < ApplicationController
 		end
 	end
 	def show
-		if targeturl = AcSu.find_by(:shorturl=>params[:id]).target
-			redirect_to targeturl
+		if @target = AcSu.find_by(:shorturl=>params[:id])
+			if @target[:used]
+				@target.update(:used=>@target[:used]+1)
+			else
+				@target.update(:used=>1)
+			end
+			redirect_to @target[:target]
 		else
 			redirect_to ac_sus_path
 		end
@@ -35,6 +40,6 @@ class AcSusController < ApplicationController
 		params.require(:ac_su).permit(:target)
 	end
 	def sr_generation
-		sr = SecureRandom.base64(3)
+		sr = SecureRandom.urlsafe_base64(3)
 	end
 end
