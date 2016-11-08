@@ -1,0 +1,2 @@
+module AcSusHelper
+end

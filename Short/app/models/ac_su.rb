@@ -1,0 +1,2 @@
+class AcSu < ApplicationRecord
+end
