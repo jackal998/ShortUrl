@@ -1,0 +1,10 @@
+<h2>Put Your Url in The Box</h2>
+<%= form_for @acsu, :url => ac_sus_path do |f| %>
+	<div class="form-group">
+		<%= f.label :target %>
+		<%= f.url_field :target , :class => "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= f.submit :class => "btn btn-default"%>
+	</div>
+<% end %>
