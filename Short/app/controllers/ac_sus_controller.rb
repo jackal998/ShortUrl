@@ -3,17 +3,26 @@ class AcSusController < ApplicationController
 		@acsu = AcSu.new
 	end
 	def new
-		@acsu = AcSu.last
+		if params[:id]
+			@acsu =AcSu.find(params[:id])
+		else
+			@acsu = AcSu.last
+		end
 	end
 
 	def create
-		@acsu = AcSu.new(su_params)
-		if @acsu.save
-			AcSu.last.update(:shorturl => AcSu.last.id.to_s + sr_generation)
-			redirect_to new_ac_su_path
+		if @acsu = AcSu.find_by(:target=>su_params[:target])
+			redirect_to new_ac_su_path(:id => @acsu)
 		else
-			render :index
+			@acsu = AcSu.new(su_params)
+			if @acsu.save
+				AcSu.last.update(:shorturl => AcSu.last.id.to_s + sr_generation)
+				redirect_to new_ac_su_path
+			else
+				render :index
+			end
 		end
+		
 	end
 
 	private
