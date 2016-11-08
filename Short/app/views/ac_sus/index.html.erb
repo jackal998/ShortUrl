@@ -1,5 +1,5 @@
 <h2>Put Your Url in The Box</h2>
-<%= form_for @acsu, :url => ac_sus_path do |f| %>
+<%= form_for @acsu, :url => ac_sus_path, :method => "post" do |f| %>
 	<div class="form-group">
 		<%= f.label :target %>
 		<%= f.url_field :target , :class => "form-control" %>
